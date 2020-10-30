@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.1/socket.io.js" integrity="sha512-AcZyhRP/tbAEsXCCGlziPun5iFvcSUpEz2jKkx0blkYKbxU81F+iq8FURwPn1sYFeksJ+sDDrI5XujsqSobWdQ==" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <form id="chat" autocomplete="off">
+      <div class="message-content" id="message-content"></div>
+      <div class="send-content">
+        <input type="text" name="message" placeholder="Digite uma mensagem" class="input">
+        <button type="submit" ><i class="material-icons">send</i></button>
+      </div>
+    </form>
+  </div>
+
+  <script type="text/javascript">
+    // Instancia socket
+    let socket = io('http://localhost:3000')
+    // Pega o nome
+    let author = prompt("Digite seu nome")
+    // Pega o elemento do chata para atualizar scroll
+    let chatElement = document.getElementById('message-content')
+
+    // Renderiza mensagem
+    const renderMessage = (data) => {
+      if (data.author == author) $('.message-content').append('<div class="message"><div class="user"><p>'+ data.message +'</p></div></div>')
+      else $('.message-content').append('<div class="message"><div class="other"><p><strong>'+ data.author +': </strong> '+ data.message +'</p></div></div>')
+      
+      // Scroll para cima, fazendo com que os elementos fiquem na tela
+      chatElement.scrollTop = chatElement.scrollHeight
+    }
+
+    // Pega mensagens já criadas
+    socket.on('previousMessages', (datas) => datas.forEach(data => renderMessage(data)))
+
+    // Recebe novas mensagens 
+    socket.on('receivedMessage', (data) => renderMessage(data))
+
+    // Quando enviar a mensagem
+    $('#chat').submit((event) => {
+      event.preventDefault()
+
+      let message = $('input[name=message]').val()
+      
+      if (!author) author = prompt("Please enter your name");
+
+      // Verifica se tem mensagem e autor, e envia mensagem
+      if (message && author) {
+        let messageObject = { author, message }
+
+        renderMessage(messageObject)
+        
+        
+        socket.emit('sendMessage', messageObject)
+
+        $('input[name=message]').val('')
+      } 
+    })
+  </script>
+</body>
+</html>
