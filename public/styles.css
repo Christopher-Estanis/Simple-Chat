@@ -1,0 +1,140 @@
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #app {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+.app {
+  position: relative;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #090e11;
+}
+
+#chat {
+  background-color: #2a2f32;
+  top: 5px;
+
+  position: relative;
+  min-width: 400px;
+  max-width: 1396px;
+  height: calc(100% - 10px);
+  min-height: 648px;
+  margin: auto;
+
+  display: grid;
+  grid-template-rows: auto 60px;
+}
+
+.message-content {
+  width: 100%;
+  height: 100%;
+  flex: auto;
+  position: relative;
+  background-image: url('./image/58ed79b188c56e6e925cdb066e9687f9.png');
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover; 
+  display: flex;
+  flex-direction: column;
+  margin-top: auto !important;
+  padding: 15px 0;
+  overflow: auto;
+}
+
+.message-content > :first-child { margin-top: auto }
+
+.message {
+  padding-right: 4%;
+  padding-left: 4%;
+  margin-bottom: 5px;
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  color: #FFF;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  word-wrap: break-word;
+}
+
+.message p {
+  margin: 0;
+  padding: 0;
+}
+
+.other {
+  padding: 11px 10px 9px 8px;
+  align-self: flex-start;
+  background-color: #262d31;
+  border-radius: 0 10px 10px 10px;
+}
+
+.user {
+  padding: 8px 9px 10px 11px;
+  align-self: flex-end;
+  background-color: #054740;
+  border-radius: 10px 0 10px 10px;
+}
+
+.send-content {
+  display: flex;
+  background-color: #1e2428;
+}
+
+.send-content input {
+  flex: 1;
+  border-radius: 21px;
+  padding: 9px 12px 11px;
+  margin: 5px 10px;
+  color: #d4d5d7;
+  background-color: #33383b;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-weight: 400;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.send-content i {
+  color: #828689;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  transition: all 200ms ease-in;
+}
+
+.send-content button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.send-content i:hover {
+  color: #a2a6a9;
+}
+
+::-webkit-scrollbar {
+  width: 6px!important;
+  height: 6px!important;
+}
+
+/* ::-webkit-scrollbar-track {
+  background-color: initial;
+} */
+
+::-webkit-scrollbar-thumb {
+  background-color: hsla(0,0%,100%,.16);
+}
