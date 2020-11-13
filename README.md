@@ -1,5 +1,5 @@
 ## :pencil2: Projeto
-O simple-chat é um projeto criado para a aula de sistemas distribuídos, com o objetivo de aprender a funcinalidade dos sockets.
+O simple-chat é um projeto criado para a aula de sistemas distribuídos, com o objetivo de aprender a funcionalidade dos sockets.
 
 ## :books: Bibliotecas utilizadas 
 - [SocketIo](https://socket.io/)
